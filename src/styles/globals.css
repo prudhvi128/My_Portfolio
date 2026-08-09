@@ -1,0 +1,161 @@
+/* ======================================================
+   File: src/styles/globals.css
+   Purpose: Global stylesheet for the application.
+   Why it exists: Tailwind v4 is wired in through this file,
+                  and base app styles live here.
+   Used In:
+     - src/main.jsx (imported at the app entry point)
+   Responsibilities:
+     - Loads Tailwind utilities.
+     - Enables smooth scrolling.
+     - Defines the shared motion keyframes + reduced-motion fallback.
+   ====================================================== */
+@import "tailwindcss";
+
+/* Default page base (matches the app's default dark theme so the
+   overscroll area and pre-hydration paint don't flash white) */
+html,
+body {
+  background-color: #020617;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ======================================================
+   Motion helpers
+   Why: All keyframes are centralized here so the entrance
+        animations and the prefers-reduced-motion fallback
+        live in one place. Every keyframe only animates
+        opacity + transform (GPU-friendly) and stays within
+        500ms unless it is the hero float.
+   ====================================================== */
+
+/* Page-load entrance: navbar fades/slides down from the top */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page-load entrance: hero content rises up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page-load entrance: hero visual scales in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gentle float — the only infinite motion on the site */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Ambient background: slow drift for the gradient blobs (transform only) */
+@keyframes blobDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(28px, -22px, 0);
+  }
+  50% {
+    transform: translate3d(-18px, 26px, 0);
+  }
+  75% {
+    transform: translate3d(-28px, -16px, 0);
+  }
+}
+
+/* Slow, subtle infinite drift variants. Negative delays offset the phase so
+   the blobs never move in sync. Reduced-motion disables them globally. */
+.animate-blob-1 {
+  animation: blobDrift 24s ease-in-out infinite;
+}
+.animate-blob-2 {
+  animation: blobDrift 31s ease-in-out infinite;
+  animation-delay: -10s;
+}
+.animate-blob-3 {
+  animation: blobDrift 27s ease-in-out infinite;
+  animation-delay: -18s;
+}
+
+/* One-shot entrance utilities (fill "both" hides content until the
+   animation starts, so delayed elements never flash) */
+.animate-fade-slide-down {
+  animation: fadeSlideDown 0.5s ease-out both;
+}
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out both;
+}
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion: collapse all animation/transition
+   durations and disable smooth scrolling for the user. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fade-in used by the fullscreen image viewer overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Zoom-in used by the fullscreen image viewer content */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
