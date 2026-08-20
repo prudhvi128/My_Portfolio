@@ -128,7 +128,7 @@ function Navbar({ isDark, setIsDark }) {
     : "opacity-0 -translate-y-2 invisible pointer-events-none";
 
   return (
-    <nav className="relative w-full px-6 sticky top-0 z-50">
+    <nav className="flex relative w-full px-6 sticky top-0 z-50">
       {/* Overlay behind the mobile menu (dims the page, closes on click) */}
       {isMenuOpen && (
         <div
@@ -139,8 +139,10 @@ function Navbar({ isDark, setIsDark }) {
       )}
 
       <div
-        className={`animate-fade-slide-down flex pt-3 relative z-20 justify-between items-center max-w-[1500px] px-8 rounded-full transition-all duration-300 ease-out ${glassStyle(isDark)} ${
-          isScrolled ? "h-16 shadow-lg backdrop-blur-2xl" : "h-20 backdrop-blur-xl"
+        className={`animate-fade-slide-down flex pt-3 relative z-20 justify-between items-center w-full max-w-[1500px] mx-auto px-8 rounded-full transition-all duration-300 ease-out ${glassStyle(isDark)} ${
+          isScrolled
+            ? "h-16 shadow-lg backdrop-blur-2xl"
+            : "h-20 backdrop-blur-xl"
         }`}
       >
         {/* Left Side (Logo) */}
@@ -168,9 +170,7 @@ function Navbar({ isDark, setIsDark }) {
 
               <div
                 className={`h-0.5 rounded-full bg-[#3f208c] transition-all duration-300 ease-out ${
-                  active === link.key
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
+                  active === link.key ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
             </div>
@@ -220,9 +220,13 @@ function Navbar({ isDark, setIsDark }) {
             <div
               key={link.key}
               className={`flex flex-col items-start transition-all duration-300 ease-out ${
-                isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
+                isMenuOpen
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-2"
               }`}
-              style={{ transitionDelay: isMenuOpen ? `${index * 60}ms` : "0ms" }}
+              style={{
+                transitionDelay: isMenuOpen ? `${index * 60}ms` : "0ms",
+              }}
             >
               <Link
                 to={link.to}

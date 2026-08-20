@@ -12,7 +12,7 @@
 // ======================================================
 
 // Local screenshot for the Portfolio Website project
-import portfolioImg from "../assets/portfolio.png";
+import portfolioImg from "../assets/portfolio.webp";
 
 export const projects = [
   // Portfolio Website Project
@@ -61,7 +61,7 @@ export const projects = [
       // Replace / add more screenshots (local files under src/assets)
       { src: portfolioImg, alt: "Portfolio Website — home page screenshot" },
     ],
-    github: "#", // Replace with GitHub repository URL
+    github: "https://github.com/prudhvi128/", // Replace with GitHub repository URL
     liveDemo: "#", // Replace with deployed website URL
   },
 ];

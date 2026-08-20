@@ -34,7 +34,7 @@ function ContactCard({ icon, title, description, href, download, isDark }) {
       download={download}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className={`group flex flex-col h-full p-6 rounded-3xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:border-violet-400/60 active:scale-[0.98] cursor-pointer ${cardStyleShadow(isDark)}`}
+      className={`group relative z-30 flex flex-col h-full p-6 rounded-3xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:border-violet-400/60 active:scale-[0.98] cursor-pointer pointer-events-auto touch-manipulation ${cardStyleShadow(isDark)}`}
     >
       {/* Icon + arrow */}
       <div className="flex items-start justify-between">

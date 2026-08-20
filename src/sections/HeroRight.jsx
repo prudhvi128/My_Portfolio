@@ -14,7 +14,7 @@
 // ======================================================
 
 // Hero profile image shown in the avatar circle
-import avatar from "../assets/avatar.png";
+import avatar from "../assets/avatar.webp";
 
 // Brand/tech icons for the tech stack grid
 import {

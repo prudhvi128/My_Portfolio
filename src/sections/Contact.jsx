@@ -151,9 +151,9 @@ function Contact({ isDark }) {
         {/* Left Side */}
         <div className="lg:col-span-3 flex flex-col gap-6">
           {/* Contact Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {contactMethods.map((method, index) => (
-              <Reveal key={method.title} variant="up" delay={index * 100} className="h-full">
+          <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {contactMethods.map((method) => (
+              <div key={method.title} className="relative z-20 h-full">
                 <ContactCard
                   icon={method.icon}
                   title={method.title}
@@ -162,7 +162,7 @@ function Contact({ isDark }) {
                   download={method.download}
                   isDark={isDark}
                 />
-              </Reveal>
+              </div>
             ))}
           </div>
 

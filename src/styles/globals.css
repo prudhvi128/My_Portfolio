@@ -98,16 +98,26 @@ html {
 
 /* Slow, subtle infinite drift variants. Negative delays offset the phase so
    the blobs never move in sync. Reduced-motion disables them globally. */
-.animate-blob-1 {
-  animation: blobDrift 24s ease-in-out infinite;
-}
-.animate-blob-2 {
-  animation: blobDrift 31s ease-in-out infinite;
-  animation-delay: -10s;
-}
+.animate-blob-1,
+.animate-blob-2,
 .animate-blob-3 {
-  animation: blobDrift 27s ease-in-out infinite;
-  animation-delay: -18s;
+  animation: none;
+}
+
+@media (min-width: 768px) {
+  .animate-blob-1 {
+    animation: blobDrift 24s ease-in-out infinite;
+  }
+
+  .animate-blob-2 {
+    animation: blobDrift 31s ease-in-out infinite;
+    animation-delay: -10s;
+  }
+
+  .animate-blob-3 {
+    animation: blobDrift 27s ease-in-out infinite;
+    animation-delay: -18s;
+  }
 }
 
 /* One-shot entrance utilities (fill "both" hides content until the

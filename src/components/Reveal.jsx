@@ -46,7 +46,7 @@ const visibleState = { opacity: 1, x: 0, y: 0, scale: 1 };
 
 // Trigger once the element enters the viewport.
 // once: false is what makes the animation replay on every re-entry.
-const viewportConfig = { once: false, amount: "some" };
+const viewportConfig = { once: true, amount: "some" };
 
 function Reveal({
   as: Tag = "div",
